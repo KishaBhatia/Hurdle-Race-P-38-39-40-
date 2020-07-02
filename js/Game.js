@@ -46,15 +46,15 @@ class Game {
     if(allPlayers !== undefined){
 
       background(ground_img);
-      image(track_img,0,-displayHeight*4,displayWidth,displayHeight*5);
-      var display_position = 400;
+      image(track_img,0,0,displayWidth,displayHeight);
+      //var display_position = 400;
       
       //index of the array
       var index = 0;
 
       //x and y position of the runners
-      var x = 100;
-      var y;
+      var x = 200;
+      var y = 500;
 
       for(var plr in allPlayers){
         //add 1 to the index for every loop
@@ -73,8 +73,8 @@ class Game {
           camera.position.y = runners[index-1].y
         }
 
-        textSize(15);
-        text(allPlayers[plr].name + ": " + allPlayers[plr].distance, 120,display_position)
+        //textSize(15);
+        //text(allPlayers[plr].name + ": " + allPlayers[plr].distance, 120,display_position)
       }
 
     }
