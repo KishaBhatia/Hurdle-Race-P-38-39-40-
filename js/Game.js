@@ -46,16 +46,16 @@ class Game {
     
     if(allPlayers !== undefined){
 
-      background(ground_img);
-      image(track_img,-480,0,displayWidth,displayHeight);
+      //background(ground_img);
+      image(track_img,0,0,displayWidth*5,displayHeight);
       //var display_position = 400;
       
       //index of the array
       var index = 0;
 
       //x and y position of the runners
-      var x = -350;
-      var y = -60;
+      var x = 0;
+      var y = 0;
 
       for(var plr in allPlayers){
         //add 1 to the index for every loop
@@ -85,12 +85,12 @@ class Game {
       player.update();
     }
 
-    if(player.distance>300){
+    if(player.distance>3870){
       gameState=2;
-      player.rank+=1;
-      Player.updateRunnerssAtEnd(player.rank);
-      textSize(20);
-      text("Well Done! Your rank is "+player.rank,200,200);
+      //player.rank+=1;
+      //Player.updateRunnerssAtEnd(player.rank);
+      //textSize(20);
+      //text("Well Done! Your rank is "+player.rank,200,200);
     }
 
 
@@ -99,6 +99,6 @@ class Game {
 
   end(){
     console.log("Game Ended");
-    console.log(player.rank);
+    //console.log(player.rank);
   }
 }
