@@ -42,35 +42,36 @@ class Game {
     form.hide();
 
     Player.getPlayerInfo();
+    //player.getRunnersAtEnd();
     
     if(allPlayers !== undefined){
 
       background(ground_img);
-      image(track_img,0,0,displayWidth,displayHeight);
+      image(track_img,-480,0,displayWidth,displayHeight);
       //var display_position = 400;
       
       //index of the array
       var index = 0;
 
       //x and y position of the runners
-      var x = 200;
-      var y = 500;
+      var x = -350;
+      var y = -60;
 
       for(var plr in allPlayers){
         //add 1 to the index for every loop
         index = index + 1 ;
 
         //position the runners a little away from each other in x direction
-        y = y + 200;
+        y = y + 180;
         //use data form the database to display the runners in y direction
-        x = displayWidth - allPlayers[plr].distance;
+        x = 30+allPlayers[plr].distance;
         runners[index-1].x = x;
         runners[index-1].y = y;
 
         if (index === player.index){
           runners[index - 1].shapeColor = "red";
-          camera.position.x = displayWidth/2;
-          camera.position.y = runners[index-1].y
+          camera.position.x = x;
+          camera.position.y = displayHeight/2;
         }
 
         //textSize(15);
@@ -84,8 +85,12 @@ class Game {
       player.update();
     }
 
-    if(player.distance>3740){
+    if(player.distance>300){
       gameState=2;
+      player.rank+=1;
+      Player.updateRunnerssAtEnd(player.rank);
+      textSize(20);
+      text("Well Done! Your rank is "+player.rank,200,200);
     }
 
 
@@ -94,5 +99,6 @@ class Game {
 
   end(){
     console.log("Game Ended");
+    console.log(player.rank);
   }
 }
