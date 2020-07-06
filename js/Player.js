@@ -3,7 +3,7 @@ class Player {
     this.index = null;
     this.distance = 0;
     this.name = null;
-    //this.rank = null;
+    this.rank = null;
   }
 
   getCount(){
@@ -34,7 +34,7 @@ class Player {
     })
   }
 
-  /*getRunnersAtEnd(){
+  getRunnersAtEnd(){
     var databaseRef=database.ref("RunnersAtEnd");
     databaseRef.on("value",(data)=>{
       this.rank=data.val();
@@ -45,5 +45,5 @@ class Player {
     database.ref("/").update({
       RunnersAtEnd:rank
     })
-  }*/
+  }
 }

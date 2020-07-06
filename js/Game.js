@@ -46,7 +46,7 @@ class Game {
     
     if(allPlayers !== undefined){
 
-      //background(ground_img);
+      background(ground_img);
       image(track_img,0,0,displayWidth*5,displayHeight);
       //var display_position = 400;
       
@@ -62,7 +62,7 @@ class Game {
         index = index + 1 ;
 
         //position the runners a little away from each other in x direction
-        y = y + 180;
+        y = y + 150;
         //use data form the database to display the runners in y direction
         x = 30+allPlayers[plr].distance;
         runners[index-1].x = x;
@@ -80,17 +80,17 @@ class Game {
 
     }
 
-    if(keyIsDown(UP_ARROW) && player.index !== null){
+    if(keyIsDown(RIGHT_ARROW) && player.index !== null){
       player.distance +=10
       player.update();
     }
 
-    if(player.distance>3870){
+    if(player.distance>=5100){
       gameState=2;
-      //player.rank+=1;
-      //Player.updateRunnerssAtEnd(player.rank);
-      //textSize(20);
-      //text("Well Done! Your rank is "+player.rank,200,200);
+      player.rank+=1;
+      Player.updateRunnersAtEnd(player.rank);
+      textSize(20);
+      text("Well Done! Your rank is "+player.rank,displayWidth-100,displayHeight/2);
     }
 
 
@@ -99,6 +99,6 @@ class Game {
 
   end(){
     console.log("Game Ended");
-    //console.log(player.rank);
+    console.log(player.rank);
   }
 }
