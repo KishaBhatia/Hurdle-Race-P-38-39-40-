@@ -25,6 +25,8 @@ class Game {
       }
       form = new Form()
       form.display();
+      hurdle=new Hurdle();
+      hurdle.createHurdle()
     }
 
     runner1 = createSprite(100,200);
@@ -35,7 +37,23 @@ class Game {
     runner3.addImage("R3",runner3_img);
     runner4 = createSprite(700,200);
     runner4.addImage("R4",runner4_img);
+
+    runner1.setCollider("rectangle",0,0,20,70);
+    runner2.setCollider("rectangle",0,0,20,70);
+    runner3.setCollider("rectangle",0,0,20,70);
+    runner4.setCollider("rectangle",0,0,20,70);
+
     runners = [runner1, runner2, runner3, runner4];
+
+    divider1=createSprite(displayWidth/2,displayHeight/4+5,displayWidth,10);
+    divider2=createSprite(displayWidth/2,displayHeight/2-20,displayWidth,10);
+    divider3=createSprite(displayWidth/2,3*displayHeight/4-50,displayWidth,10);
+    divider4=createSprite(displayWidth/2,displayHeight-80,displayWidth,10);
+
+    divider1.visible=false;
+    divider2.visible=false;
+    divider3.visible=false;
+    divider4.visible=false;
   }
 
   play(){
@@ -88,12 +106,26 @@ class Game {
     if(player.distance>=5100){
       gameState=2;
       player.rank+=1;
-      Player.updateRunnersAtEnd(player.rank);
-      textSize(20);
-      text("Well Done! Your rank is "+player.rank,displayWidth-100,displayHeight/2);
+      Player.updateRunnerssAtEnd(player.rank);
+      player.WinMessage();
+      player.updatePlayerInfo();
+      end();
     }
 
+    for(var i=0;i<hurdleGroup.length;i++){
+      for(var j=0;j<4;j++){
+          if(players[j].isTouching(hurdleGroup.get(i))){
+              hurdleGroup.get(i).rotation=90;
+              player.updatePlayerInfo();
+          }
+      }
+  } 
 
+    player1.collide(divider1);
+    player2.collide(divider2);
+    player3.collide(divider3);
+    player4.collide(divider4);
+    
     drawSprites();
   }
 

@@ -46,4 +46,11 @@ class Player {
       RunnersAtEnd:rank
     })
   }
+
+  WinMessage(){ 
+    fill("green");
+    textSize(30);
+    text("Well Done! You finished the Race",camera.position.x-100,120);
+  };
+
 }

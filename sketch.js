@@ -15,7 +15,7 @@ function preload(){
   runner2_img=loadImage("../spriteImages/runner2.png");
   runner3_img=loadImage("../spriteImages/runner3.png");
   runner4_img=loadImage("../spriteImages/runner4.png");
-  hurdel_img=loadImage("../spriteImages/hurdle.png");
+  hurdel_img=loadImage("../spriteImages/hurdle(1).png");
   track_img=loadImage("../spriteImages/track1.png");
 }
 
