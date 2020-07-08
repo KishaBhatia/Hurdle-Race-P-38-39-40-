@@ -25,17 +25,17 @@ class Game {
       }
       form = new Form()
       form.display();
-      hurdle=new Hurdle();
-      hurdle.createHurdle()
+      //hurdle=new Hurdle();
+      //hurdle.createHurdle()
     }
 
     runner1 = createSprite(100,200);
     runner1.addImage("R1",runner1_img);
-    runner2 = createSprite(300,200);
+    runner2 = createSprite(100,400);
     runner2.addImage("R2",runner2_img);
-    runner3 = createSprite(500,200);
+    runner3 = createSprite(100,600);
     runner3.addImage("R3",runner3_img);
-    runner4 = createSprite(700,200);
+    runner4 = createSprite(100,800);
     runner4.addImage("R4",runner4_img);
 
     runner1.setCollider("rectangle",0,0,20,70);
@@ -80,17 +80,22 @@ class Game {
         index = index + 1 ;
 
         //position the runners a little away from each other in x direction
-        y = y + 150;
+        y = y + 200;
         //use data form the database to display the runners in y direction
         x = 30+allPlayers[plr].distance;
         runners[index-1].x = x;
         runners[index-1].y = y;
 
+        
         if (index === player.index){
           runners[index - 1].shapeColor = "red";
           camera.position.x = x;
           camera.position.y = displayHeight/2;
+          if(keyIsDown(UP_ARROW)){
+            runners[index-1].y-=20;
+          }
         }
+        
 
         //textSize(15);
         //text(allPlayers[plr].name + ": " + allPlayers[plr].distance, 120,display_position)
@@ -103,28 +108,35 @@ class Game {
       player.update();
     }
 
+    /*for(var i=0;i<runners.length;i++){
+      if(keyIsDown(UP_ARROW)){
+        runners[i].y-=20;
+      }
+    }*/
+   
+
     if(player.distance>=5100){
       gameState=2;
       player.rank+=1;
-      Player.updateRunnerssAtEnd(player.rank);
+      Player.updateRunnersAtEnd(player.rank);
       player.WinMessage();
-      player.updatePlayerInfo();
+      player.update();
       end();
     }
 
-    for(var i=0;i<hurdleGroup.length;i++){
+    for(var i=0;i<hurdlesGroup.length;i++){
       for(var j=0;j<4;j++){
-          if(players[j].isTouching(hurdleGroup.get(i))){
-              hurdleGroup.get(i).rotation=90;
-              player.updatePlayerInfo();
+          if(runners[j].isTouching(hurdlesGroup.get(i))){
+              hurdlesGroup.get(i).rotation=90;
+              //player.update();
           }
       }
-  } 
+    } 
 
-    player1.collide(divider1);
-    player2.collide(divider2);
-    player3.collide(divider3);
-    player4.collide(divider4);
+    runner1.collide(divider1);
+    runner2.collide(divider2);
+    runner3.collide(divider3);
+    runner4.collide(divider4);
     
     drawSprites();
   }
