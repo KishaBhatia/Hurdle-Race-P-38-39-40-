@@ -48,9 +48,10 @@ class Player {
   }
 
   WinMessage(){ 
-    fill("green");
+    fill(8,0,102);
     textSize(30);
     text("Well Done! You finished the Race",camera.position.x-100,120);
+    text("Your rank is "+player.rank,350,-3200);
   };
 
 }

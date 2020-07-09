@@ -27,33 +27,34 @@ class Game {
       form.display();
       //hurdle=new Hurdle();
       //hurdle.createHurdle()
+    
+
+      runner1 = createSprite(100,150);
+      runner1.addImage("R1",runner1_img);
+      runner2 = createSprite(100,350);
+      runner2.addImage("R2",runner2_img);
+      runner3 = createSprite(100,550);
+      runner3.addImage("R3",runner3_img);
+      runner4 = createSprite(100,750);
+      runner4.addImage("R4",runner4_img);
+
+      runner1.setCollider("rectangle",0,0,20,70);
+      runner2.setCollider("rectangle",0,0,20,70);
+      runner3.setCollider("rectangle",0,0,20,70);
+      runner4.setCollider("rectangle",0,0,20,70);
+
+      runners = [runner1, runner2, runner3, runner4];
+
+      divider1=createSprite(displayWidth/2,displayHeight/4+5,displayWidth,10);
+      divider2=createSprite(displayWidth/2,displayHeight/2-20,displayWidth,10);
+      divider3=createSprite(displayWidth/2,3*displayHeight/4-50,displayWidth,10);
+      divider4=createSprite(displayWidth/2,displayHeight-80,displayWidth,10);
+
+      divider1.visible=false;
+      divider2.visible=false;
+      divider3.visible=false;
+      divider4.visible=false;
     }
-
-    runner1 = createSprite(100,200);
-    runner1.addImage("R1",runner1_img);
-    runner2 = createSprite(100,400);
-    runner2.addImage("R2",runner2_img);
-    runner3 = createSprite(100,600);
-    runner3.addImage("R3",runner3_img);
-    runner4 = createSprite(100,800);
-    runner4.addImage("R4",runner4_img);
-
-    runner1.setCollider("rectangle",0,0,20,70);
-    runner2.setCollider("rectangle",0,0,20,70);
-    runner3.setCollider("rectangle",0,0,20,70);
-    runner4.setCollider("rectangle",0,0,20,70);
-
-    runners = [runner1, runner2, runner3, runner4];
-
-    divider1=createSprite(displayWidth/2,displayHeight/4+5,displayWidth,10);
-    divider2=createSprite(displayWidth/2,displayHeight/2-20,displayWidth,10);
-    divider3=createSprite(displayWidth/2,3*displayHeight/4-50,displayWidth,10);
-    divider4=createSprite(displayWidth/2,displayHeight-80,displayWidth,10);
-
-    divider1.visible=false;
-    divider2.visible=false;
-    divider3.visible=false;
-    divider4.visible=false;
   }
 
   play(){
@@ -80,7 +81,7 @@ class Game {
         index = index + 1 ;
 
         //position the runners a little away from each other in x direction
-        y = y + 200;
+        y = y + 170;
         //use data form the database to display the runners in y direction
         x = 30+allPlayers[plr].distance;
         runners[index-1].x = x;
@@ -92,7 +93,7 @@ class Game {
           camera.position.x = x;
           camera.position.y = displayHeight/2;
           if(keyIsDown(UP_ARROW)){
-            runners[index-1].y-=20;
+            runners[index-1].y-=120;
           }
         }
         
